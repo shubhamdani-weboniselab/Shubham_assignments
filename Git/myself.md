@@ -1,0 +1,2 @@
+Hello 
+My name is shubham dani. I am from Bhopal. I did My engineering in comouter science from TIT college bhopal. I have done my Schooling from Subhash Higher Secoundry School For Excellence. I have intrest in watching Sci-Fi movies and playing outdoor games. I love outing too. I have done my college projects on Android Application. I have done my training on Redhat enterprise linux 5.0. I like to learn new development languages. 
