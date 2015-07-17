@@ -1,58 +1,74 @@
 ## Content management system
 
 
-User {
-	_id : ObjectID
-	UserName : String
-	DateOfCreation: timestamps
-	Email: String
-	Password: String
+users {
+	role_id : id
+	user_name : string
+	date_of_creation: timestamps
+	email: String
+	password: String
 	
-}
-
-User_profile {
-	_id : ObjectId of User e.g. User._id
-	UserName: String
-	Profile_image: "blob or url"
-	PagesLiked: ["Arrays of Liked Pages"]
-	Addressess : [
-		localAddress: {
-			HouseNumber: "Numbers" 
-			StreetName: String
-			City: String
-			State: String
-			Pincode: numbers
+	user_profile {
+	_id : objectId of user e.g. user._id
+	profile_image: "blob or url"
+	pagesLiked: ["Arrays of Liked Pages"]
+	addressess : [
+		local_address: {
+			houseNumber: "Numbers" 
+			streetName: String
+			city: String
+			state: String
+			pincode: numbers
 				}
-		PermanentAddress: String
+		permanentAddress: {
+			houseNumber: "Numbers" 
+			streetName: String
+			city: String
+			state: String
+			pincode: numbers
+		}
 		]
 
-	PhoneNo : {
-		Number1: Numbers
-		Number2: Numbers
+	phoneNo : {
+		number1: Numbers
+		number2: Numbers
 		}
 	
 }
-
-
-Roles {
-	_id = ObjectId of User e.g. User._id
-	Role_type: "Either Super Admin || Admin || editor"
 }
 
 
-Pages {
-	Id : ObjectId
-	Title: String
-	CreatedTime: timestamp;
-	UsersAssociated: ["Array of UserIds"];
-	Slug = String
-	Text: String
+
+
+roles {
+
+	_id = objectid of user e.g. user._id
+	role_type: "either super admin || admin || editor"
+	super admin: "read, write, edit, delete, manipulate"
+	admin: "read , write, edit, delete"
+	editor: "read , write ,"
 }
 
-Comments {
-	id = ObjectID
-	Title: String
-	Owner: "UserID eg: User._id"
-	LikesCount: int
+
+pages {
+
+	page_id : objectId
+	title: String
+	pageowner = userIds
+	createdtime: timestamp;
+	usersassociated:["Array of UserIds"];
+	slug = String
+	text: String
+	likescount : int
+
+	comments : {
+		pageId: ObjectId
+		id = ObjectID
+		title: String
+		owner: "UserID eg: User._id"
+		likesCount: int
 	
+		}
 }
+
+
