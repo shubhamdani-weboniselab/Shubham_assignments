@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<script type="text/javascript">
+
+//DEFINING THE GENERIC CLASS GEN TABLE SO THIS CAN BE INHERITED TO THE OTHER CLASS TO GIVE SAME FUNCTIONALITY
+    
+function Gentable () { // crating the class
+this.Gentablename = "";
+this.tableid="";
+} 
+Gentable.prototype.addRows = function(table_id, tableText ) {
+    var table = document.getElementById(table_id);
+    //var data = document.getElementById("textId").value;
+    //var table = table_id;
+    var data = tableText;
+        if(data.length<1) {
+            alert("please enter something");
+            }
+        
+        else {
+            var row = table.insertRow(0);
+        var col = row.insertCell(0);
+        col.innerHTML = data ;
+        
+        //storetodb(document.getElementById("textId").value, 1);
+            
+        // var col1 = row.insertCell(1);
+       
+}
+};
+
+Gentable.prototype.deleteRow = function (table_id) {
+    console.log(table_id.parentNode.parentNode.parentNode.parentNode);
+    document.getElementById(table_id.parentNode.parentNode.parentNode.parentNode.id).deleteRow(table_id.parentNode.parentNode.rowIndex);
+    // document.getElementById(this.parentNode.parentNode.parentNode.parentNode.id).rows[parentNode.parentNode.rowIndex]
+};
+
+
+
+
+// CREATING THE SUB CLASS FOR THE DUPLICATION OF THE FUNCTIONALITY
+
+//***************************************************************//
+//              ****To do table**** 
+function todotable() {
+Gentable.call(this); // call of the super class 
+// inheritance here 
+this.tablename="todotable";
+this.table="todoso";
+     
+}
+todotable.prototype = Object.create(Gentable.prototype);
+todotable.prototype.constructor = todotable;
+todotable.prototype.show = function() {
+
+        console.log("todo");
+    };
+
+
+todotable.prototype.addRow = function(t,h) {
+    Gentable.prototype.addRows(t,h);
+
+var table = document.getElementById(t);
+    var row = table.rows[0];
+        // var col = row.insertCell(0);
+        // col.innerHTML = h;
+    var col1 = row.insertCell(1);
+    col1.innerHTML = "<button id = 'NO' onclick =compleatedObject.addRowss('tableid2',document.getElementById(this.parentNode.parentNode.parentNode.parentNode.id).rows[parentNode.parentNode.rowIndex].cells[0].innerHTML)>Compleated</button>"
+        var col2 = row.insertCell(2);
+        col2.innerHTML = "<button id = 'Yes' onclick='Gentable.prototype.deleteRow(this)' >Delete</button>"
+        //col2.innerHTML = "c2"; 
+};
+//***************************************************************//
+//               ****compleated table****
+function compleatedtable() {
+Gentable.call(this); // call of the super class 
+// inheritance here 
+this.tablename="compleatedtable";
+this.table="compleatso";
+     
+}
+compleatedtable.prototype = Object.create(Gentable.prototype);
+compleatedtable.prototype.constructor = compleatedtable;
+compleatedtable.prototype.show = function() {
+
+        console.log("compleatso");
+    };
+
+compleatedtable.prototype.addRowss = function(t,h) {
+    Gentable.prototype.addRows(t,h);
+
+var table = document.getElementById(t);
+    var row = table.rows[0];
+        // var col = row.insertCell(0);
+        // col.innerHTML = h;
+    
+        var col1 = row.insertCell(1);
+        col1.innerHTML = "<button id = 'Yes' onclick='Gentable.prototype.deleteRow(this)' >Delete</button>"
+        //col2.innerHTML = "c2"; 
+        var col2 = row.insertCell(2);
+    col2.innerHTML = "<button id = 'NO' onclick =compleatedObject.addRowss('history',document.getElementById(this.parentNode.parentNode.parentNode.parentNode.id).rows[parentNode.parentNode.rowIndex].cells[0].innerHTML)>History</button>"
+};
+
+
+ 
+//***************************************************************//
+// ***** CREATING THE OBJECT OF INDIVIDUAL TABLES*****
+var todoObject = new todotable();
+// var processObject = new prcesstable();
+var compleatedObject = new compleatedtable();
+</script>
+
+</head>
+<body>
+
+<input type=text id='textId' ></input>
+
+<button onclick="todoObject.addRow('tableid', 'yes to do ')">todo</button>
+<button onclick="compleatedObject.addRowss('history', 'completed')">compleate</button>
+<button onclick="compleatedObject.show()">show</button>
+
+<br>
+
+<p></p>
+<h2>ToDoTable</h2>
+<table id ="tableid" border =2>
+</table>
+<br>
+<h2>Compleated</h2>
+
+<table id ="tableid2" border =2>
+</table>
+
+<h2>History</h2>
+<table id ="history" border = 2></table>    
+</table>
+
+
+
+</body>
+</html>
+
+
+
